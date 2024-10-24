@@ -1,7 +1,7 @@
 # Generative AI Ontology 
 
 Welcome to the **Generative AI Ontology** repository. This repository contains an extensive and detailed OWL ontology that covers the full scope of generative AI systems. The ontology incorporates advanced classes, properties, and relationships, representing model types, architectures, components, training techniques, tools, deployment methods, and frameworks for research and proof-of-concept (PoC) development.
-
+[![](assets/2024-10-24-12-00-18.png)](https://bioportal.bioontology.org/ontologies/GENAI/?p=summary)
 ## Overview
 
 This ontology provides a structured and interconnected representation of generative AI concepts, allowing researchers and developers to model, analyze, and extend generative AI systems effectively. It supports the exploration of different model architectures, fine-tuning techniques, training methods, evaluation metrics, and ethical considerations.
