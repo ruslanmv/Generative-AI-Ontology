@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.example.com/generative_ai#"
+         xml:base="http://www.example.com/generative_ai"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+  <owl:Ontology rdf:about="http://www.example.com/generative_ai">
+    <rdfs:label>Complete Generative AI Ontology - Extended Version</rdfs:label>
+    <rdfs:comment>An extensive ontology that represents all relevant concepts, relationships, and processes in generative AI, including model types, architectures, components, training techniques, tools, deployment methods, and frameworks for research and PoC development.</rdfs:comment>
+  </owl:Ontology>
+
+  <!-- 1. Generative Model Types -->
+  <owl:Class rdf:about="http://www.example.com/generative_ai/GenerativeModel"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/LLM">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/GenerativeModel"/>
+    <owl:DatatypeProperty rdf:about="http://www.example.com/generative_ai/architecture">
+      <rdfs:range rdf:resource="xsd:string"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="http://www.example.com/generative_ai/usesPretrainedWeights">
+      <rdfs:range rdf:resource="xsd:boolean"/>
+    </owl:DatatypeProperty>
+    <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/supportsTokenization">
+      <rdfs:range rdf:resource="http://www.example.com/generative_ai/TokenizationMethod"/>
+    </owl:ObjectProperty>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/DiffusionModel">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/GenerativeModel"/>
+    <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/usesNoiseScheduler"/>
+    <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/usesUNetArchitecture"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/AutoregressiveModel">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/GenerativeModel"/>
+    <owl:DatatypeProperty rdf:about="http://www.example.com/generative_ai/sequenceLength">
+      <rdfs:range rdf:resource="xsd:int"/>
+    </owl:DatatypeProperty>
+  </owl:Class>
+
+  <!-- Subclasses for Specific Models -->
+  <owl:Class rdf:about="http://www.example.com/generative_ai/GPT">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/LLM"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/BERT">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/LLM"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/VariationalAutoencoder">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/GenerativeModel"/>
+    <owl:DatatypeProperty rdf:about="http://www.example.com/generative_ai/latentSpaceSize">
+      <rdfs:range rdf:resource="xsd:int"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="http://www.example.com/generative_ai/reconstructionLoss">
+      <rdfs:range rdf:resource="xsd:string"/>
+    </owl:DatatypeProperty>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/GAN">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/GenerativeModel"/>
+    <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/discriminator"/>
+    <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/generator"/>
+    <owl:DatatypeProperty rdf:about="http://www.example.com/generative_ai/lossFunction">
+      <rdfs:range rdf:resource="xsd:string"/>
+    </owl:DatatypeProperty>
+  </owl:Class>
+
+  <!-- Subclasses of GAN -->
+  <owl:Class rdf:about="http://www.example.com/generative_ai/DCGAN">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/GAN"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/WGAN">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/GAN"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/StyleGAN">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/GAN"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/CycleGAN">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/GAN"/>
+  </owl:Class>
+
+  <!-- 2. Transformer Architecture Components -->
+  <owl:Class rdf:about="http://www.example.com/generative_ai/Transformer"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/AttentionMechanism"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/SelfAttention">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/AttentionMechanism"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/MultiHeadAttention">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/AttentionMechanism"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/PositionalEncoding"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/AbsolutePositionalEncoding">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/PositionalEncoding"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/RelativePositionalEncoding">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/PositionalEncoding"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/NormalizationLayer"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/LayerNormalization">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/NormalizationLayer"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/BatchNormalization">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/NormalizationLayer"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/FeedForwardNetwork"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/ResidualConnection"/>
+
+  <!-- 3. Diffusion Model Components -->
+  <owl:Class rdf:about="http://www.example.com/generative_ai/NoiseScheduler"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/LinearScheduler">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/NoiseScheduler"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/NonLinearScheduler">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/NoiseScheduler"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/UNetArchitecture"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/DownsamplingBlock"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/UpsamplingBlock"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/SkipConnection"/>
+
+  <!-- 4. Training Techniques -->
+  <owl:Class rdf:about="http://www.example.com/generative_ai/TrainingTechnique"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/SelfSupervisedLearning">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/TrainingTechnique"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/ReinforcementLearning">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/TrainingTechnique"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/RLHF">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/ReinforcementLearning"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/DiffusionTrainingTechnique"/>
+
+  <!-- 5. Fine-Tuning Techniques for LLM and Multimodal -->
+  <owl:Class rdf:about="http://www.example.com/generative_ai/FineTuningTechnique"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/LoRA">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/FineTuningTechnique"/>
+  </owl:Class>
+  
+  <owl:Class rdf:about="http://www.example.com/generative_ai/PromptTuning">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/FineTuningTechnique"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/AdapterTuning">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/FineTuningTechnique"/>
+  </owl:Class>
+
+  <!-- 6. Retrieval-Augmented Generation (RAG) and Vector Databases -->
+  <owl:Class rdf:about="http://www.example.com/generative_ai/RAG"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/VectorDatabase">
+    <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/embeddingModel"/>
+  </owl:Class>
+
+  <!-- 7. Tools and Frameworks for Development -->
+  <owl:Class rdf:about="http://www.example.com/generative_ai/DevelopmentTool"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/Gradio">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/DevelopmentTool"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/Streamlit">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/DevelopmentTool"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/Flask">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/DevelopmentTool"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/HuggingFace">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/DevelopmentTool"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/Ollama">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/DevelopmentTool"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/LLaMAFile">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/DevelopmentTool"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/MAGMA">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/DevelopmentTool"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/Colab">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/DevelopmentTool"/>
+  </owl:Class>
+
+  <!-- 8. Infrastructure Components for Deployment and Training -->
+  <owl:Class rdf:about="http://www.example.com/generative_ai/InferenceHardware"/>
+  <owl:Class rdf:about="http://www.example.com/generative_ai/GPU">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/InferenceHardware"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://www.example.com/generative_ai/CPU">
+    <rdfs:subClassOf rdf:resource="http://www.example.com/generative_ai/InferenceHardware"/>
+  </owl:Class>
+
+  <!-- 9. Relationships -->
+  <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/usesQuantizationMethod"/>
+  <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/trainsWith"/>
+  <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/evaluatesWith"/>
+  <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/appliesEthicalGuideline"/>
+  <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/combinesModality"/>
+  <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/implementsAttentionMechanism"/>
+  <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/hasPositionalEncoding"/>
+  <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/usesOptimizationAlgorithm"/>
+  <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/deploysVia"/>
+  <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/usesDevelopmentTool"/>
+  <owl:ObjectProperty rdf:about="http://www.example.com/generative_ai/runsOnHardware"/>
+
+</rdf:RDF>
